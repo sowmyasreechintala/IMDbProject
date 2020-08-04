@@ -1,0 +1,77 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+      <style>
+          html{ font-family: Arial,Helvetica,sans-serif;color:black;}
+          body{background-color: black; margin: 0}
+          #container{width:100%;margin: 0 auto;background-color: black;color: black;height:100%;}
+          #header{width: 100%;height: 140px;background:black;clear: both}
+          #banner{background: black;height: 600px;border: 1px;clear: both;color: white;width:100%;}
+          #login{background-color: slategrey;color: white;font-size:30px;align-content:center;text-align: center }
+           </style>
+  </head>
+  <body>
+  <div id="container">
+      <div id="header">
+<nav class="navbar navbar-expand navbar-dark" style="background-color: black;">
+  <a class="navbar-brand" href="#"><img src="{% static 'images/imdb img.jpg' %}" width="200" height="100"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><img src="{% static 'images/menubr.png' %}" width="30" height="30">Menu <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active" style="width: 900px">
+
+      <input class="form-control mr-sm-2" type="search" placeholder="Search"  aria-label="Search">
+
+      </li>
+        <li class="nav-item active">
+        <a class="nav-link disabled" href="#" tabindex="-1">IMDbPro</a>
+      </li>
+        <li class="nav-item active">
+        <a class="nav-link " href="#" tabindex="-1">Watch list</a>
+      </li>
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'user_signin' %}" tabindex="-1">Sign in</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+      </div>
+      <div id="content_area">
+          <div id="banner">
+          <table align="center" border="1" width="50%" style="color: white">
+          <tr><th colspan="4" style="font-size: 30px;color: white;background-color: black;text-align: center">Watch List Movies</th></tr>
+
+{% for x in data %}
+
+
+    <tr> <th width="250px"><h1>{{ x.title}}</h1> <img src="{{ x.poster }}" alt="< img src='{{ x.poster.url }}'>" width="250" height="200"></th><th><video height="250px" width="450px" autoplay="autoplay" controls type="video/mp4" data-bind="visible:!isVideoEnded(),event:{ended:videoEnded}" src="{{ x.video_link }}"></video></th>
+</tr>
+    <tr><th colspan="2">{{ x.plot }}</th></tr>
+       <tr> </tr>
+       {% endfor %}</table>
+          </div>
+      </div>
+
+  </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
+</html>

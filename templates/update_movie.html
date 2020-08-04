@@ -1,0 +1,31 @@
+<html>
+<body>
+
+<form action="{% url 'save_update' %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+{% if data %}
+<table align="center" border="0" width="50%">
+    <tr><th colspan="2">ID<input type="text" value="{{ data.movie_id}}" name="movie_id" readonly></th></tr>
+    <tr><th colspan="2">TITLE<input type="text" value="{{ data.title}}" name="title"></th></tr>
+    <tr><th colspan="2">Year<input type="number" value="{{ data.year}}" name="year"></th></tr>
+    <tr><th colspan="2">Length<input type="text" value="{{ data.length}}" name="length"></th></tr>
+    <tr><th colspan="2">Rating<input type="number" value="{{ data.rating}}" name="rating"></th></tr>
+    <tr><th colspan="2">Rating_Votes<input type="number" value="{{ data.rating_votes}}" name="rating_votes"></th></tr>
+    <tr><th> <input type="file" name="image"> <span><img src="{{ x.poster }}" width="60" height="80" name="image"></span></th></tr>
+{#        <th>{{ x.poster.url }}</th>#}
+{#    <tr><th>Image<input type="file" name="image" alt=< img src='{{ data.poster }}'width='150' height='150'></th></tr>#}
+    <tr><th>Plot<input type="text" name="plot" value="{{ data.plot}}"></th></tr>
+{#    <tr><th colspan="2"><textarea value="{{ data.plot}}" name="plot" id="mytextarea"></textarea></th></tr>#}
+{#    <tr><th>{{ data.trailer_id }}</th></tr>#}
+    <tr><th colspan="2">Trailer_id<input type="text" value="{{ data.trailer_id }}" name="trailer"></th></tr>
+
+    <tr>
+        <th>
+            <button type="submit">Update</button>
+        </th>
+    </tr>
+</table>
+{% endif %}
+</form>
+</body>
+</html>

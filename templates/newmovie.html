@@ -1,0 +1,29 @@
+
+<html>
+<body>
+
+<form action="{% url 'save_movie' %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+<table align="center" border="0" width="50%">
+    <tr><th colspan="2">ID<input type="text" name="id"></th></tr>
+    <tr><th colspan="2">TITLE<input type="text" name="title"></th></tr>
+    <tr><th colspan="2">Year<input type="number"name="year"></th></tr>
+    <tr><th colspan="2">Length<input type="text"  name="length"></th></tr>
+    <tr><th colspan="2">Rating<input type="number"  name="rating"></th></tr>
+    <tr><th colspan="2">Rating_Votes<input type="number" name="rating_votes"></th></tr>
+    <tr><th>Image<input type="file" name="image"></th></tr>
+    <tr><th>Plot<input type="text" name="plot"></th></tr>
+{#    <tr><th colspan="2"><textarea value="{{ data.plot}}" name="plot" id="mytextarea"></textarea></th></tr>#}
+{#    <tr><th>{{ data.trailer_id }}</th></tr>#}
+    <tr><th colspan="2">Trailer_id<input type="text" name="trailer"></th></tr>
+
+    <tr>
+        <th>
+            <button type="submit">submit</button>
+        </th>
+    </tr>
+</table>
+</form>
+</body>
+</html>

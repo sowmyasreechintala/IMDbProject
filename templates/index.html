@@ -1,0 +1,99 @@
+{% load static %}
+<html>
+ <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+      <style>
+          html{ font-family: Arial,Helvetica,sans-serif;color:white;}
+          body{background-color: black; margin: 0}
+          #container{width:100%;margin: 0 auto;background-color: black;color: white;height:100%;}
+          #header{width: 100%;height: 140px;background:black;clear: both}
+          #banner{background: black;height: 600px;border: 1px;clear: both;color: white;width:100%;}
+          #login{background-color: black;color: white;font-size:30px;align-content:center;text-align: center }
+           a:link { color:white; background-color:black;text-decoration: none; }
+    a:visited { color:white; background-color:black; }
+    a:hover { color:white; background-color:slategray;}
+           </style>
+  </head>
+<body>
+<div id="container">
+      <div id="header">
+<nav class="navbar navbar-expand navbar-dark" style="background-color: black;">
+  <a class="navbar-brand" href="#"><img src="{% static 'images/imdb img.jpg' %}" width="200" height="100"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><img src="{% static 'images/menubr.png' %}" width="30" height="30">Menu <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active" style="width: 900px">
+
+      <input class="form-control mr-sm-2" type="search" placeholder="Search"  aria-label="Search">
+
+      </li>
+        <li class="nav-item active">
+        <a class="nav-link disabled" href="#" tabindex="-1">IMDbPro</a>
+      </li>
+        <li class="nav-item active">
+        <a class="nav-link " href="#" tabindex="-1">Watch list</a>
+      </li>
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'user_signin' %}" tabindex="-1">Sign in</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+      </div>
+      <div id="content_area">
+          <div id="banner">
+              <table align="center" border="2" width="100%" style="color: white">
+    <tr><th colspan="12" style="text-align: center;font-size: 30px"><a href="{% url 'newmovie' %}"> Upload New Movie </a></th></tr>
+<tr>
+    <th>ID</th>
+    <th>TITLE</th>
+    <th>Year</th>
+    <th>Length</th>
+    <th>Rating</th>
+    <th>Rating_Votes</th>
+    <th>Image</th>
+    <th>Plot</th>
+    <th>Trailer_id</th>
+    <th>Video_link</th>
+    <th>Delete</th>
+    <th>Upadate</th>
+</tr>
+{% for x in data %}
+    <tr>
+        <th>{{ x.movie_id}}</th>
+        <th>{{ x.title}}</th>
+        <th>{{ x.year}}</th>
+        <th>{{ x.length}}</th>
+        <th>{{ x.rating}}</th>
+        <th>{{ x.rating_votes}}</th>
+        <th> <img src="{{ x.poster }}" alt="< img src='
+{{ x.poster.url }}'>" width="60" height="80"></th>
+{#        <th>{{ x.poster.url }}</th>#}
+        <th>{{ x.plot }}</th>
+        <th>{{ x.trailer_id}}</th>
+        <th><video height="150px" width="150px" autoplay="autoplay" controls type="video/mp4" data-bind="visible:!isVideoEnded(),event:{ended:videoEnded}" src="{{ x.video_link }}"></video></th>
+        <th>
+            <a href="{% url 'deletemovie' %}?movieid={{ x.movie_id }}">delete</a>
+        </th>
+    <th><a href="{% url 'updatemovie' %}?movieid={{ x.movie_id }}">update</a> </th>
+    </tr>
+{% endfor %}</table>
+
+          </div>
+      </div>
+</div>
+
+
+</body>
+</html>
